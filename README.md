@@ -1,4 +1,4 @@
-# Build a Semantic Book Recommender with LLMs 
+# Semantic Book Recommender with LLMs 
 
  "Build a Semantic Book Recommender with LLMs ". There are five components to this project:
 * Text data cleaning (code in the notebook `data-exploration.ipynb`)
