@@ -1,11 +1,41 @@
-# Semantic Book Recommender with LLMs 
+# Semantic Book Recommender with LLMs
 
- "Build a Semantic Book Recommender with LLMs ". There are five components to this project:
-* Text data cleaning (code in the notebook `data-exploration.ipynb`)
-* Semantic (vector) search and how to build a vector database (code in the notebook `vector-search.ipynb`). This allows users to find the most similar books to a natural language query (e.g., "a book about a person seeking revenge").
-* Doing text classification using zero-shot classification in LLMs (code in the notebook `text-classification.ipynb`). This allows us to classify the books as "fiction" or "non-fiction", creating a facet that users can filter the books on. 
-* Doing sentiment analysis using LLMs and extracting the emotions from text (code in the notebook `sentiment-analysis.ipynb`). This will allow users to sort books by their tone, such as how suspenseful, joyful or sad the books are.
-* Creating a web application using Gradio for users to get book recommendations (code in the file `gradio-dashboard.py`).
+A comprehensive project that leverages Large Language Models to build an intelligent book recommendation system.
 
-A requirements.txt file containing all the project dependencies is provided as part of this repo.
+## Project Overview
 
+This project creates a semantic book recommendation system using various LLM techniques and technologies. Users can discover books through natural language queries, filter by fiction/non-fiction categories, and sort by emotional tone.
+
+## Components
+
+### 1. Text Data Cleaning
+- Implementation in `data-exploration.ipynb`
+- Processes raw book data for downstream analysis
+
+### 2. Semantic Vector Search
+- Implementation in `vector-search.ipynb`
+- Builds a vector database for similarity matching
+- Enables natural language queries like "a book about a person seeking revenge"
+
+### 3. Zero-Shot Text Classification
+- Implementation in `text-classification.ipynb`
+- Classifies books as "fiction" or "non-fiction"
+- Creates filterable facets for improved user experience
+
+### 4. Sentiment Analysis
+- Implementation in `sentiment-analysis.ipynb`
+- Extracts emotional tones from book descriptions
+- Enables sorting by emotions (suspenseful, joyful, sad, etc.)
+
+### 5. Web Application
+- Implementation in `gradio-dashboard.py`
+- Provides an interactive user interface using Gradio
+- Integrates all components into a cohesive recommendation system
+
+## Installation
+
+A `requirements.txt` file is included in this repository containing all necessary dependencies for the project.
+
+```bash
+pip install -r requirements.txt
+```
