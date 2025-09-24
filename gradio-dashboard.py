@@ -3,13 +3,13 @@ import numpy as np
 from dotenv import load_dotenv
 
 from langchain_community.document_loaders import TextLoader
-from langchain_openai import OpenAIEmbeddings
 from langchain_huggingface import HuggingFaceEmbeddings
+# from langchain_huggingface import HuggingFaceEndpointEmbeddings
 from langchain_text_splitters import CharacterTextSplitter
 from langchain_chroma import Chroma
-
+# import os
 import gradio as gr
-
+# HF_TOKEN=os.getenv('HF_TOKEN')
 load_dotenv()
 
 books = pd.read_csv("books_with_emotions.csv")
@@ -23,7 +23,7 @@ books["large_thumbnail"] = np.where(
 raw_documents = TextLoader("tagged_description.txt", encoding="utf-8").load()
 text_splitter = CharacterTextSplitter(separator="\n", chunk_size=0, chunk_overlap=0)
 documents = text_splitter.split_documents(raw_documents)
-db_books = Chroma.from_documents(documents, HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-base-v2"))
+db_books = Chroma.from_documents(documents, HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2"))
 
 
 def retrieve_semantic_recommendations(
@@ -86,7 +86,7 @@ categories = ["All"] + sorted(books["simple_categories"].unique())
 tones = ["All"] + ["Happy", "Surprising", "Angry", "Suspenseful", "Sad"]
 
 with gr.Blocks(theme = gr.themes.Glass()) as dashboard:
-    gr.Markdown("# Semantic book recommender")
+    gr.Markdown("# Semantic Book Recommender")
 
     with gr.Row():
         user_query = gr.Textbox(label = "Please enter a description of a book:",
