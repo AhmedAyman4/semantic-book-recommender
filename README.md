@@ -1,6 +1,12 @@
 # Book Recommender
 
-A simple book recommender project with a Python backend and a Next.js frontend.
+- A simple book recommender project with a Python backend and a Next.js frontend.
+- This project creates a semantic book recommendation system using various LLM techniques and technologies. Users can discover books through natural language queries, filter by fiction/non-fiction categories, and sort by emotional tone.
+
+## Deployments
+
+- API (Hugging Face Space): [https://ahmed-ayman-book-recommender-backend.hf.space/docs](https://ahmed-ayman-book-recommender-backend.hf.space/docs)
+- Frontend (Vercel): [https://semantic-book-recommender-three.vercel.app/](https://semantic-book-recommender-three.vercel.app/)
 
 ## Repository structure
 
