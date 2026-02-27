@@ -1,0 +1,57 @@
+# backend/requirements.txt
+fastapi
+uvicorn
+
+# Core
+pandas
+numpy
+
+# Environment
+python-dotenv
+
+# PyTorch (REQUIRED for sentence-transformers embeddings)
+torch
+sentence-transformers
+
+# Gradio + Web Server
+gradio[oauth]
+fastapi
+starlette
+uvicorn
+python-multipart
+websockets
+
+# LangChain (only what you use)
+langchain-community
+langchain-huggingface
+langchain-text-splitters
+langchain-chroma
+
+# Vector DB
+chromadb
+chroma-hnswlib
+
+# HuggingFace utilities
+transformers
+tokenizers
+huggingface-hub
+safetensors
+
+# HTTP/Networking
+httpx
+requests
+urllib3
+certifi
+
+# Validation & Types
+pydantic
+annotated-types
+typing-extensions
+
+# Utilities
+PyYAML
+Jinja2
+packaging
+filelock
+fsspec
+tqdm
