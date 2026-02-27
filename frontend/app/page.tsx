@@ -119,41 +119,21 @@ export default function App() {
   // State for the expanded modal view
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
 
-  // Fetch categories and tones from backend on load
-  useEffect(() => {
-    fetch("https://ahmed-ayman-book-recommender-backend.hf.space/api/metadata")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.categories) setCategories(data.categories);
-        if (data.tones) setTones(data.tones);
-      })
-      .catch((err) => {
-        console.error("Could not load metadata from backend:", err);
-        setCategories([
-          "All",
-          "Children's Fiction",
-          "Children's Nonfiction",
-          "Fiction",
-          "Nonfiction",
-        ]);
-        setTones(["All", "Happy", "Surprising", "Angry", "Suspenseful", "Sad"]);
-      });
-  }, []);
-
-  // Real API call to your FastAPI backend
-  const handleSearch = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!query.trim() && category === "All" && tone === "All") return;
-
+  // Reusable search function
+  const fetchRecommendations = async (
+    searchQuery: string,
+    searchCategory: string,
+    searchTone: string,
+  ) => {
     setIsLoading(true);
     setHasSearched(true);
     setError(null);
 
     try {
       const params = new URLSearchParams({
-        query: query.trim() || "books",
-        category,
-        tone,
+        query: searchQuery.trim() || "popular books",
+        category: searchCategory,
+        tone: searchTone,
       });
 
       const res = await fetch(
@@ -172,6 +152,38 @@ export default function App() {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  // Fetch categories, tones, and INITIAL recommendations on load
+  useEffect(() => {
+    // 1. Load Metadata
+    fetch("https://ahmed-ayman-book-recommender-backend.hf.space/api/metadata")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.categories) setCategories(data.categories);
+        if (data.tones) setTones(data.tones);
+      })
+      .catch((err) => {
+        console.error("Could not load metadata from backend:", err);
+        setCategories([
+          "All",
+          "Children's Fiction",
+          "Children's Nonfiction",
+          "Fiction",
+          "Nonfiction",
+        ]);
+        setTones(["All", "Happy", "Surprising", "Angry", "Suspenseful", "Sad"]);
+      });
+
+    // 2. Load Initial Book Recommendations automatically
+    fetchRecommendations("popular books", "All", "All");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Form submission handler
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    fetchRecommendations(query, category, tone);
   };
 
   // Prevent background scrolling when modal is open
@@ -411,7 +423,7 @@ export default function App() {
         >
           <div
             className="bg-white dark:bg-[#111] w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl shadow-2xl relative flex flex-col md:flex-row border border-slate-200 dark:border-slate-800 animate-in zoom-in-95 duration-200"
-            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
+            onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
             <button
@@ -450,8 +462,6 @@ export default function App() {
                   Description
                 </h3>
                 <div className="prose dark:prose-invert prose-slate prose-sm max-w-none text-slate-700 dark:text-slate-300 leading-relaxed">
-                  {/* Using standard text since we receive truncated plain text from backend. 
-                      If backend sends full descriptions later, this will automatically handle it beautifully. */}
                   <p>{selectedBook.description.replace(/\.\.\.$/, "")}...</p>
                 </div>
               </div>
