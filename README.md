@@ -6,6 +6,7 @@
 ## Deployments
 
 - API (Hugging Face Space): [https://ahmed-ayman-book-recommender-backend.hf.space/docs](https://ahmed-ayman-book-recommender-backend.hf.space/docs)
+- Gradio Demo (Hugging Face Space): [https://huggingface.co/spaces/ahmed-ayman/book-recommender](https://huggingface.co/spaces/ahmed-ayman/book-recommender)
 - Frontend (Vercel): [https://semantic-book-recommender-three.vercel.app/](https://semantic-book-recommender-three.vercel.app/)
 
 ## Repository structure
