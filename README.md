@@ -1,7 +1,6 @@
-# Book Recommender
+# Semantic Book Recommender
 
-- A simple book recommender project with a Python backend and a Next.js frontend.
-- This project creates a semantic book recommendation system using various LLM techniques and technologies. Users can discover books through natural language queries, filter by fiction/non-fiction categories, and sort by emotional tone.
+This project creates a semantic book recommendation system using various LLM techniques and technologies. Users can discover books through natural language queries, filter by fiction/non-fiction categories, and sort by emotional tone.
 
 ## Deployments
 

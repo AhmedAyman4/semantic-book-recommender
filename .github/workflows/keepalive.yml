@@ -2,7 +2,7 @@ name: Keep HF Space Alive
 
 on:
   schedule:
-    - cron: "0 */5 * * *"   # at minute 0, every 5th hour
+    - cron: "0 0 * * *"   # every day at 00:00 UTC
   workflow_dispatch:  # allows manual trigger
 
 jobs:
